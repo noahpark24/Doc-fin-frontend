@@ -1,9 +1,16 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import tw from 'twrnc';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 //Styles
+import tw from 'twrnc';
 import colors from '../stylesheets/colors';
 
-const Welcome = () => {
+const Welcome: React.FC = () => {
+  const navigation = useNavigation<any>();
+
+  const handleNextPress = () => {
+    navigation.navigate('SetSalary');
+  };
+
   return (
     <>
       <View
@@ -14,6 +21,7 @@ const Welcome = () => {
         <Text style={tw.style(`pb-8 mb-32 text-${colors.text_ligth} text-3xl`)}>
           Bienvenido/a A DocFin !
         </Text>
+        <Image source={require('../../assets/doc-fin-icono-1.png')} />
         <Text
           style={tw.style(
             `pb-8 pl-8 pr-8 text-${colors.text_ligth} mb-20 w-full text-xl`
@@ -32,7 +40,10 @@ const Welcome = () => {
             <Text style={tw.style(`text-${colors.text_ligth}`)}>Previo</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={tw.style(`p-4 bg-[${colors.button_bg}]`)}>
+          <TouchableOpacity
+            onPress={handleNextPress}
+            style={tw.style(`p-4 bg-[${colors.button_bg}]`)}
+          >
             <Text style={tw.style(`text-${colors.text_ligth}`)}>Siguiente</Text>
           </TouchableOpacity>
         </View>
