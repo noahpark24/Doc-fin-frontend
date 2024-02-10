@@ -1,9 +1,12 @@
-import { View, Text, TouchableOpacity } from 'react-native';
-import tw from 'twrnc';
+import { View, Text, TouchableOpacity, Image } from 'react-native';
+//Utils
+import useHandleNavigation from '../Utils/HandleNavigation';
 //Styles
+import tw from 'twrnc';
 import colors from '../stylesheets/colors';
 
-const Welcome = () => {
+const Welcome: React.FC = () => {
+  const handleNavigate = useHandleNavigation();
   return (
     <>
       <View
@@ -11,12 +14,18 @@ const Welcome = () => {
           `flex items-center bg-[${colors.background}] justify-center h-full `
         )}
       >
-        <Text style={tw.style(`pb-8 mb-32 text-${colors.text_ligth} text-3xl`)}>
+        <Text style={tw.style(`pb-8 mb-4 text-${colors.text_ligth} text-3xl`)}>
           Bienvenido/a A DocFin !
         </Text>
+
+        <Image
+          style={tw.style('mb-8 rounded-full')}
+          source={require('../../assets/doc-fin-icono-1.png')}
+        />
+
         <Text
           style={tw.style(
-            `pb-8 pl-8 pr-8 text-${colors.text_ligth} mb-20 w-full text-xl`
+            `mb-16 px-8 text-${colors.text_ligth}  w-full text-xl`
           )}
         >
           Aqui Podra registar sus gastos y sus ingresos para llevar un correcto
@@ -29,10 +38,13 @@ const Welcome = () => {
             disabled
             style={tw.style(`p-4 bg-[${colors.disabled_button}] `)}
           >
-            <Text style={tw.style(`text-${colors.text_ligth}`)}>Previo</Text>
+            <Text style={tw.style(`text-${colors.text_gray}`)}>Previo</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={tw.style(`p-4 bg-[${colors.button_bg}]`)}>
+          <TouchableOpacity
+            onPress={() => handleNavigate('SetSalary')}
+            style={tw.style(`p-4 bg-[${colors.button_bg}]`)}
+          >
             <Text style={tw.style(`text-${colors.text_ligth}`)}>Siguiente</Text>
           </TouchableOpacity>
         </View>

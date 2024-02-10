@@ -1,12 +1,29 @@
-import { StatusBar } from 'expo-status-bar';
-import { View } from 'react-native';
-import Welcome from './views/Welcome';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-export default function App() {
+//Components
+import Welcome from './Components/Welcome';
+import SetSalary from './Components/SetSalary';
+
+const Stack = createNativeStackNavigator();
+
+const App = () => {
   return (
-    <View>
-      <Welcome />
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name="Welcome"
+          component={Welcome}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="SetSalary"
+          component={SetSalary}
+          options={{ headerShown: false }}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
