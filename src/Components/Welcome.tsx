@@ -1,16 +1,12 @@
 import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+//Utils
+import useHandleNavigation from '../Utils/HandleNavigation';
 //Styles
 import tw from 'twrnc';
 import colors from '../stylesheets/colors';
 
 const Welcome: React.FC = () => {
-  const navigation = useNavigation<any>();
-
-  const handleNextPress = () => {
-    navigation.navigate('SetSalary');
-  };
-
+  const handleNavigate = useHandleNavigation();
   return (
     <>
       <View
@@ -18,13 +14,18 @@ const Welcome: React.FC = () => {
           `flex items-center bg-[${colors.background}] justify-center h-full `
         )}
       >
-        <Text style={tw.style(`pb-8 mb-32 text-${colors.text_ligth} text-3xl`)}>
+        <Text style={tw.style(`pb-8 mb-4 text-${colors.text_ligth} text-3xl`)}>
           Bienvenido/a A DocFin !
         </Text>
-        <Image source={require('../../assets/doc-fin-icono-1.png')} />
+
+        <Image
+          style={tw.style('mb-8 rounded-full')}
+          source={require('../../assets/doc-fin-icono-1.png')}
+        />
+
         <Text
           style={tw.style(
-            `pb-8 pl-8 pr-8 text-${colors.text_ligth} mb-20 w-full text-xl`
+            `mb-16 px-8 text-${colors.text_ligth}  w-full text-xl`
           )}
         >
           Aqui Podra registar sus gastos y sus ingresos para llevar un correcto
@@ -37,11 +38,11 @@ const Welcome: React.FC = () => {
             disabled
             style={tw.style(`p-4 bg-[${colors.disabled_button}] `)}
           >
-            <Text style={tw.style(`text-${colors.text_ligth}`)}>Previo</Text>
+            <Text style={tw.style(`text-${colors.text_gray}`)}>Previo</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
-            onPress={handleNextPress}
+            onPress={() => handleNavigate('SetSalary')}
             style={tw.style(`p-4 bg-[${colors.button_bg}]`)}
           >
             <Text style={tw.style(`text-${colors.text_ligth}`)}>Siguiente</Text>
