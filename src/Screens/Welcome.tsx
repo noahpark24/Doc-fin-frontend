@@ -1,12 +1,10 @@
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-//Utils
-import useHandleNavigation from '../Utils/HandleNavigation';
+import { View, Text, Image } from 'react-native';
 //Styles
 import tw from 'twrnc';
 import colors from '../stylesheets/colors';
+import PrevNextButtons from '../Components/PrevNextButtons';
 
 const Welcome: React.FC = () => {
-  const handleNavigate = useHandleNavigation();
   return (
     <>
       <View
@@ -33,21 +31,7 @@ const Welcome: React.FC = () => {
         </Text>
 
         {/*Buttons */}
-        <View style={tw.style(`flex w-80  flex-row justify-between `)}>
-          <TouchableOpacity
-            disabled
-            style={tw.style(`p-4 bg-[${colors.disabled_button}] `)}
-          >
-            <Text style={tw.style(`text-${colors.text_gray}`)}>Previo</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            onPress={() => handleNavigate('SetSalary')}
-            style={tw.style(`p-4 bg-[${colors.button_bg}]`)}
-          >
-            <Text style={tw.style(`text-${colors.text_ligth}`)}>Siguiente</Text>
-          </TouchableOpacity>
-        </View>
+        <PrevNextButtons prev={null} next={'SetSalary'} />
       </View>
     </>
   );
