@@ -2,8 +2,9 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 //Components
-import Welcome from './Components/Welcome';
-import SetSalary from './Components/SetSalary';
+import Welcome from './Screens/Welcome';
+import SetSalary from './Screens/SetSalary';
+import Home from './Screens/Home';
 
 const Stack = createNativeStackNavigator();
 
@@ -19,6 +20,11 @@ const App = () => {
         <Stack.Screen
           name="SetSalary"
           component={SetSalary}
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen
+          name="Home"
+          component={Home}
           options={{ headerShown: false }}
         />
       </Stack.Navigator>
