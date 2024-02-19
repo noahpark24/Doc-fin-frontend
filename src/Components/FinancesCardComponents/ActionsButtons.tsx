@@ -7,9 +7,8 @@ import { AntDesign, FontAwesome6 } from '@expo/vector-icons';
 const ActionsButtons = () => {
   return (
     <>
-      {/*Buttons*/}
       <View
-        style={tw.style('flex  mb-68 flex-row justify-between items-center')}
+        style={tw.style('flex  mb-4 flex-row justify-between items-center')}
       >
         <View style={tw.style('flex items-center ml-5')}>
           <FontAwesome6 name="circle-arrow-up" size={48} color="#6d00a1" />

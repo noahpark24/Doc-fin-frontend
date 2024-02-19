@@ -14,7 +14,9 @@ const SpendsSection = () => {
         )}
       >
         <Text style={tw.style('text-white text-xl')}>Gastos</Text>
-        <Text style={tw.style('text-white mr-8 text-lg')}>{`$ ${spends}`}</Text>
+        <Text
+          style={tw.style('text-red-300 bg-red-600 rounded-md mr-8 text-lg')}
+        >{`- ${spends}`}</Text>
       </View>
     </>
   );
