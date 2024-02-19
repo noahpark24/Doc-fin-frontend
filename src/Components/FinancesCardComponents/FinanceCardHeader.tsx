@@ -7,8 +7,8 @@ const FinanceCardHeader = () => {
 
   return (
     <>
-      <View style={tw.style('bg-[#3C0753] px-24  pb-4 rounded-t-xl  ')}>
-        <Text style={tw.style('text-lg text-white mt-2')}>
+      <View style={tw.style('bg-[#3C0753] w-86  pb-4 rounded-t-xl  ')}>
+        <Text style={tw.style('text-lg text-white text-center mt-2')}>
           Dinero Disponible
         </Text>
         <Text
