@@ -1,17 +1,11 @@
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { ScrollView, Text, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
-//Icons
-import { AntDesign } from '@expo/vector-icons';
+//Components
 import IncomeMovementCard from './MovementSectionComponents/IncomeMovementCard';
+import SpendMovementCard from './MovementSectionComponents/SpendMovementCard';
 
 const MovementsSection = () => {
-  let income = {
-    id: 1,
-    name: 'Regalo De Abuela',
-    amount: 500,
-    date: '10/02/24',
-  };
   let movements = 1;
 
   return (
@@ -36,30 +30,19 @@ const MovementsSection = () => {
           contentContainerStyle={tw`flex items-center text-center justify-center`}
         >
           <IncomeMovementCard />
+          <SpendMovementCard />
           <IncomeMovementCard />
+          <SpendMovementCard />
           <IncomeMovementCard />
+          <SpendMovementCard />
           <IncomeMovementCard />
+          <SpendMovementCard />
           <IncomeMovementCard />
+          <SpendMovementCard />
           <IncomeMovementCard />
+          <SpendMovementCard />
           <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
-          <IncomeMovementCard />
+          <SpendMovementCard />
         </ScrollView>
       )}
     </View>
