@@ -28,11 +28,10 @@ const IncomeMovementCard = () => {
             color="green"
           />
           <View>
-            <Text style={tw.style(' text-base ')}>{`${income.name.substring(
-              0,
-              16
-            )}`}</Text>
-            <Text>{`${income.date}`}</Text>
+            <Text
+              style={tw.style(' text-base text-center')}
+            >{`${income.name.substring(0, 16)}`}</Text>
+            <Text style={tw.style(' text-center ')}>{`${income.date}`}</Text>
           </View>
           <Text
             style={tw.style('text-green-800 text-lg mr-2 mt-1')}
