@@ -1,7 +1,9 @@
 import React from 'react';
-import { ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
+//Styles
 import tw from 'twrnc';
 import colors from '../stylesheets/colors';
+//Components
 import FinancesCard from '../Components/FinancesCard';
 import MovementsSection from '../Components/MovementsSection';
 import Navbar from '../Components/Navbar';
@@ -14,6 +16,7 @@ const Home = () => {
       )}
       stickyHeaderIndices={[1]}
       showsVerticalScrollIndicator={false}
+      keyboardShouldPersistTaps="always"
     >
       <FinancesCard />
       <MovementsSection />

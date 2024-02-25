@@ -2,37 +2,49 @@ import { View, Text, Image } from 'react-native';
 //Styles
 import tw from 'twrnc';
 import colors from '../stylesheets/colors';
+//Components
 import PrevNextButtons from '../Components/PrevNextButtons';
+import Home from './Home';
 
 const Welcome: React.FC = () => {
+  let alreadyLoged = false;
   return (
     <>
-      <View
-        style={tw.style(
-          `flex items-center bg-[${colors.background}] justify-center h-full `
-        )}
-      >
-        <Text style={tw.style(`pb-8 mb-4 text-${colors.text_ligth} text-3xl`)}>
-          Bienvenido/a A DocFin !
-        </Text>
+      {alreadyLoged ? (
+        <Home />
+      ) : (
+        <>
+          <View
+            style={tw.style(
+              `flex items-center bg-[${colors.background}] justify-center h-full `
+            )}
+          >
+            <Text
+              style={tw.style(`pb-8 mb-4 text-${colors.text_ligth} text-3xl`)}
+            >
+              Bienvenido/a A DocFin !
+            </Text>
 
-        <Image
-          style={tw.style('mb-8 rounded-full')}
-          source={require('../../assets/doc-fin-icono-1.png')}
-        />
+            <Image
+              style={tw.style('mb-8 rounded-full')}
+              source={require('../../assets/doc-fin-icono-1.png')}
+            />
 
-        <Text
-          style={tw.style(
-            `mb-16 px-8 text-${colors.text_ligth}  w-full text-xl`
-          )}
-        >
-          Aqui Podra registar sus gastos y sus ingresos para llevar un correcto
-          control sobre sus finanzas personales y optimizar sus gastos :D
-        </Text>
+            <Text
+              style={tw.style(
+                `mb-16 px-8 text-${colors.text_ligth}  w-full text-xl`
+              )}
+            >
+              Aqui Podra registar sus gastos y sus ingresos para llevar un
+              correcto control sobre sus finanzas personales y optimizar sus
+              gastos :D
+            </Text>
 
-        {/*Buttons */}
-        <PrevNextButtons prev={null} next={'SetSalary'} />
-      </View>
+            {/*Buttons */}
+            <PrevNextButtons prev={null} next={'SetSalary'} />
+          </View>
+        </>
+      )}
     </>
   );
 };

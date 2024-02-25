@@ -22,6 +22,7 @@ class MovementsStore {
     date: Date
   ) {
     const movement = { name, amount, date };
+
     this[category].push(movement);
   }
 }

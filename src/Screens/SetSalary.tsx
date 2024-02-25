@@ -2,7 +2,7 @@ import { Image, Text, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
 import colors from '../stylesheets/colors';
-//Utils
+//Components
 import PrevNextButtons from '../Components/PrevNextButtons';
 import InputDropdown from '../Components/InputDropdown';
 

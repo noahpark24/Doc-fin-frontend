@@ -8,12 +8,12 @@ import Home from './Screens/Home';
 
 const Stack = createNativeStackNavigator();
 
-if (
-  !new (class {
-    x: any;
-  })().hasOwnProperty('x')
-)
-  throw new Error('Transpiler is not configured correctly');
+// if (
+//   !new (class {
+//     x: any;
+//   })().hasOwnProperty('x')
+// )
+//   throw new Error('Transpiler is not configured correctly');
 
 const App = () => {
   return (
