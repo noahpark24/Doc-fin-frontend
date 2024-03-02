@@ -11,8 +11,6 @@ const FinancesCard = () => {
       <FinanceCardHeader />
       <IncomesSection />
       <SpendsSection />
-
-      {/* <ActionsButtons /> */}
     </View>
   );
 };

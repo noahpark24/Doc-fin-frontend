@@ -20,33 +20,28 @@ const Navbar = () => {
       style={tw`flex-row justify-between items-center bg-gray-200 p-2 absolute bottom-0 left-0 right-0`}
     >
       <TouchableOpacity
-        style={tw`flex flex-col ml-2 items-center`}
+        style={tw`flex flex-col ml-6 items-center text-center`}
         onPress={() => setShowIncomeForm(true)}
       >
-        <FontAwesome6 name="circle-arrow-up" size={37} color="#6d00a1" />
+        <FontAwesome6 name="circle-arrow-up" size={30} color="#6d00a1" />
         <Text>Ingreso</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => setShowSpendForm(true)}
-        style={tw`flex flex-col items-center`}
+        style={tw`flex flex-col items-center text-center`}
       >
-        <FontAwesome6 name="circle-arrow-down" size={37} color="#6d00a1" />
+        <FontAwesome6 name="circle-arrow-down" size={30} color="#6d00a1" />
         <Text>Gasto</Text>
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => setShowPeriodizateForm(true)}
-        style={tw`flex flex-col items-center mr-2`}
+        style={tw`flex flex-col items-center mr-6 text-center`}
       >
-        <AntDesign name="clockcircle" size={37} color="#6d00a1" />
+        <AntDesign name="clockcircle" size={30} color="#6d00a1" />
         <Text>Periodizar</Text>
       </TouchableOpacity>
-
-      {/* <TouchableOpacity style={tw`flex flex-col mr-2 items-center`}>
-        <FontAwesome name="pencil-square" size={35} color="#6d00a1" />
-        <Text>Editar</Text>
-      </TouchableOpacity> */}
 
       <IncomeModal
         visible={showIncomeForm}
