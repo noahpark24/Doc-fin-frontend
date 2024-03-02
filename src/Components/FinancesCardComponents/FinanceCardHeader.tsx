@@ -11,6 +11,7 @@ const FinanceCardHeader = () => {
         <Text style={tw.style('text-lg text-white text-center mt-2')}>
           Dinero Disponible
         </Text>
+
         <Text
           style={tw.style('text-white text-xl text-center')}
         >{`$${availableMoney}`}</Text>

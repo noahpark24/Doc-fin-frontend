@@ -7,7 +7,7 @@ import { AntDesign } from '@expo/vector-icons';
 const IncomeMovementCard = () => {
   let income = {
     id: 1,
-    name: 'Regalo De Abuela',
+    name: 'regalo',
     amount: 500,
     date: '10/02/24',
   };
