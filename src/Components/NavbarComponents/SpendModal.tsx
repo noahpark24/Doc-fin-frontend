@@ -7,11 +7,8 @@ import tw from 'twrnc';
 import SpendCategoryDropdown from './Dropdowns/SpendCategoryDropdown';
 //Utils
 import GetActualDate from '../../Utils/GetActualDate';
-
-interface ModalForm {
-  visible: boolean;
-  hideForm: () => void;
-}
+//Interfaces
+import ModalForm from '../../Interfaces/ModalForm';
 
 const SpendModal = ({ visible, hideForm }: ModalForm) => {
   const [nombre, setNombre] = useState<string>('');

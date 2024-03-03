@@ -8,11 +8,8 @@ import PeriodizateCategoryDropdown from './Dropdowns/PeriodizateCategoryDropdown
 import PeriodizateTypeDropdown from './Dropdowns/PeriodizateTypeDropdown';
 //Calendar
 import { Calendar } from 'react-native-calendars';
-
-interface ModalForm {
-  visible: boolean;
-  hideForm: () => void;
-}
+//Interfaces
+import ModalForm from '../../Interfaces/ModalForm';
 
 const PeriodizationModal = ({ visible, hideForm }: ModalForm) => {
   const [nombre, setNombre] = useState<string>('');

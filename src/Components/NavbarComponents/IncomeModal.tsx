@@ -5,11 +5,8 @@ import colors from '../../stylesheets/colors';
 import tw from 'twrnc';
 //Utils
 import GetActualDate from '../../Utils/GetActualDate';
-
-interface ModalForm {
-  visible: boolean;
-  hideForm: () => void;
-}
+//Interfaces
+import ModalForm from '../../Interfaces/ModalForm';
 
 const IncomeModal = ({ visible, hideForm }: ModalForm) => {
   const [nombre, setNombre] = useState<string>('');
