@@ -1,5 +1,5 @@
-import React from 'react';
-import { ScrollView } from 'react-native';
+import { useEffect } from 'react';
+import { ScrollView, BackHandler } from 'react-native';
 //Styles
 import tw from 'twrnc';
 import colors from '../stylesheets/colors';
@@ -9,6 +9,15 @@ import MovementsSection from '../Components/MovementsSection';
 import Navbar from '../Components/Navbar';
 
 const Home = () => {
+  //Unable native back navigation of android
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      'hardwareBackPress',
+      () => true
+    );
+    return () => backHandler.remove();
+  }, []);
+
   return (
     <ScrollView
       contentContainerStyle={tw.style(
@@ -24,5 +33,9 @@ const Home = () => {
     </ScrollView>
   );
 };
+
+Home.navigationOptions = () => ({
+  gestureEnabled: false,
+});
 
 export default Home;
