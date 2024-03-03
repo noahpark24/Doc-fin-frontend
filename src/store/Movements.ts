@@ -1,30 +1,36 @@
 import { makeAutoObservable } from 'mobx';
-
-interface MovementInterface {
-  name: string;
-  amount: number;
-  date: Date;
-}
+//Interfaces
+import SpendInterface from '../Interfaces/SpendsInterface';
+import IncomeInterface from '../Interfaces/IncomesInterface';
+import PeriodizationInterface from '../Interfaces/PeriodizationInterface';
 
 class MovementsStore {
-  incomes: MovementInterface[] = [];
-  spends: MovementInterface[] = [];
-  bills: MovementInterface[] = [];
+  incomes: IncomeInterface[] = [];
+  spends: SpendInterface[] = [];
+  periodizatedMovement: PeriodizationInterface[] = [];
+
+  private static instance: MovementsStore;
 
   constructor() {
     makeAutoObservable(this);
   }
+  static getInstance() {
+    if (!MovementsStore.instance) {
+      MovementsStore.instance = new MovementsStore();
+    }
+    return MovementsStore.instance;
+  }
 
-  addMovement(
-    category: 'incomes' | 'spends' | 'bills',
-    name: string,
-    amount: number,
-    date: Date
-  ) {
-    const movement = { name, amount, date };
+  addIncome(newIncome: IncomeInterface) {
+    this.incomes.push(newIncome);
+  }
 
-    this[category].push(movement);
+  addSpend(newSpend: SpendInterface) {
+    this.spends.push(newSpend);
+  }
+  addPeriodizatedMovement(newMovement: PeriodizationInterface) {
+    this.periodizatedMovement.push(newMovement);
   }
 }
 
-export default new MovementsStore();
+export default MovementsStore.getInstance();
