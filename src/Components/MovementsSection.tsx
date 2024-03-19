@@ -6,7 +6,6 @@ import IncomeMovementCard from './MovementSectionComponents/IncomeMovementCard';
 import SpendMovementCard from './MovementSectionComponents/SpendMovementCard';
 //States
 import Movements from '../store/Movements';
-import PeriodizatedIncomeCard from './MovementSectionComponents/PeriodizatedIncomeCard';
 
 const MovementsSection = () => {
   return (
@@ -31,7 +30,6 @@ const MovementsSection = () => {
           contentContainerStyle={tw`flex items-center text-center justify-center`}
         >
           <IncomeMovementCard />
-          <PeriodizatedIncomeCard />
           <SpendMovementCard />
         </ScrollView>
       )}

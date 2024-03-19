@@ -1,11 +1,9 @@
-import { makeAutoObservable } from 'mobx';
+import { action, makeAutoObservable, observable } from 'mobx';
 
 class MoneyStore {
-  alreadyLogged: boolean = false;
-  editFinances: boolean = false;
-  availableMoney: number = 0;
-  totalIncomes: number = 0;
-  totalSpends: number = 0;
+  @observable availableMoney: number = 0;
+  @observable totalIncomes: number = 0;
+  @observable totalSpends: number = 0;
 
   private static instance: MoneyStore;
 
@@ -19,24 +17,29 @@ class MoneyStore {
     return MoneyStore.instance;
   }
 
+  @action
   sumeNewIncome(income: number) {
     this.totalIncomes += income;
     this.availableMoney += income;
   }
 
+  @action
   sumeNewSpend(spend: number) {
     this.totalSpends += spend;
     this.availableMoney -= spend;
   }
 
+  @action
   updateAvailableMoney(newValue: number) {
     this.availableMoney = newValue;
   }
 
+  @action
   updateTotalSpends(newValue: number) {
     this.totalSpends = newValue;
   }
 
+  @action
   updateTotalIncomes(newValue: number) {
     this.totalIncomes = newValue;
   }

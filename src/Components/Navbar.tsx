@@ -1,19 +1,19 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 //Icons
-import { FontAwesome6, AntDesign, FontAwesome } from '@expo/vector-icons';
+import { FontAwesome6, AntDesign } from '@expo/vector-icons';
 //Styles
 import tw from 'twrnc';
 //Modals
 import IncomeModal from './NavbarComponents/IncomeModal';
 import SpendModal from './NavbarComponents/SpendModal';
-import PeriodizationModal from './NavbarComponents/PeriodizationModal';
+import States from '../store/States';
+import EditionModal from './NavbarComponents/EditionModal';
 
 const Navbar = () => {
   const [showIncomeForm, setShowIncomeForm] = useState<boolean>(false);
   const [showSpendForm, setShowSpendForm] = useState<boolean>(false);
-  const [showPeriodizateForm, setShowPeriodizateForm] =
-    useState<boolean>(false);
+  const [showEditionForm, setShowEditionForm] = useState<boolean>(false);
 
   return (
     <View
@@ -36,7 +36,9 @@ const Navbar = () => {
       </TouchableOpacity>
 
       <TouchableOpacity
-        onPress={() => setShowPeriodizateForm(true)}
+        onPress={() => {
+          setShowEditionForm(true);
+        }}
         style={tw`flex flex-col items-center mr-6 text-center`}
       >
         <AntDesign name="edit" size={30} color="#6d00a1" />
@@ -52,9 +54,9 @@ const Navbar = () => {
         hideForm={() => setShowSpendForm(false)}
       />
 
-      <PeriodizationModal
-        visible={showPeriodizateForm}
-        hideForm={() => setShowPeriodizateForm(false)}
+      <EditionModal
+        visible={showEditionForm}
+        hideForm={() => setShowEditionForm(false)}
       />
     </View>
   );

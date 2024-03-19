@@ -3,8 +3,9 @@ import { Text, View } from 'react-native';
 import tw from 'twrnc';
 //Stores
 import Money from '../../store/Money';
+import { observer } from 'mobx-react-lite';
 
-const FinanceCardHeader = () => {
+const FinanceCardHeader = observer(() => {
   return (
     <>
       <View style={tw.style('bg-[#3C0753] w-86  pb-4 rounded-t-xl  ')}>
@@ -18,6 +19,6 @@ const FinanceCardHeader = () => {
       </View>
     </>
   );
-};
+});
 
 export default FinanceCardHeader;

@@ -7,7 +7,7 @@ import colors from '../stylesheets/colors';
 import FinancesCard from '../Components/FinancesCard';
 import MovementsSection from '../Components/MovementsSection';
 import Navbar from '../Components/Navbar';
-import Money from '../store/Money';
+import States from '../store/States';
 
 const Home = () => {
   useEffect(() => {
@@ -18,7 +18,7 @@ const Home = () => {
     return () => backHandler.remove();
   }, []);
 
-  Money.alreadyLogged = true;
+  States.alreadyLogged = true;
 
   return (
     <ScrollView
