@@ -7,7 +7,8 @@ import PeriodizationInterface from '../Interfaces/PeriodizationInterface';
 class MovementsStore {
   incomes: IncomeInterface[] = [];
   spends: SpendInterface[] = [];
-  periodizatedMovement: PeriodizationInterface[] = [];
+  periodizatedIncomes: PeriodizationInterface[] = [];
+  periodizatedSpends: PeriodizationInterface[] = [];
 
   private static instance: MovementsStore;
 
@@ -28,8 +29,17 @@ class MovementsStore {
   addSpend(newSpend: SpendInterface) {
     this.spends.push(newSpend);
   }
-  addPeriodizatedMovement(newMovement: PeriodizationInterface) {
-    this.periodizatedMovement.push(newMovement);
+  addPeriodizatedSpend(newMovement: PeriodizationInterface) {
+    this.periodizatedSpends.push(newMovement);
+  }
+
+  addPeriodizatedIncome(newMovement: PeriodizationInterface) {
+    console.log(
+      'Vengo de la funcion addPeriodizatedIncome en el store => ',
+      newMovement
+    );
+
+    this.periodizatedIncomes.push(newMovement);
   }
 }
 

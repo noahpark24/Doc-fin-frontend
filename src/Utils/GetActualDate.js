@@ -1,8 +1,9 @@
 const GetActualDate = () => {
-  let date = Date.now();
-  let today = new Date(date);
+  let today = new Date();
+  let offset = today.getTimezoneOffset();
+  let localDate = new Date(today.getTime() - offset * 60 * 1000);
 
-  return today.toISOString().substring(0, 10);
+  return localDate.toISOString().substring(0, 10);
 };
 
 export default GetActualDate;

@@ -1,10 +1,10 @@
 import { Text, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
+//Stores
+import Money from '../../store/Money';
 
 const FinanceCardHeader = () => {
-  let availableMoney = 175000;
-
   return (
     <>
       <View style={tw.style('bg-[#3C0753] w-86  pb-4 rounded-t-xl  ')}>
@@ -14,7 +14,7 @@ const FinanceCardHeader = () => {
 
         <Text
           style={tw.style('text-white text-xl text-center')}
-        >{`$${availableMoney}`}</Text>
+        >{`$${Money.availableMoney}`}</Text>
       </View>
     </>
   );

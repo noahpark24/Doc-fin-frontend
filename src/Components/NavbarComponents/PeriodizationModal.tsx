@@ -10,46 +10,73 @@ import PeriodizateTypeDropdown from './Dropdowns/PeriodizateTypeDropdown';
 import { Calendar } from 'react-native-calendars';
 //Interfaces
 import ModalForm from '../../Interfaces/ModalForm';
+import PeriodizationInterface from '../../Interfaces/PeriodizationInterface';
+//Components
+import FormButtons from './ModalFormButtons.tsx/FormButtons';
+//States
+import Movements from '../../store/Movements';
 
 const PeriodizationModal = ({ visible, hideForm }: ModalForm) => {
-  const [nombre, setNombre] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
-  const [type, setPeriodizateType] = useState<string>('');
-  const [monto, setMonto] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [category, setCategory] = useState<
+    'Factura' | 'Salario' | 'Suscripcion' | 'Otro'
+  >('Otro');
+  const [type, setMovementType] = useState<'Ingreso' | 'Gasto'>('Gasto');
+  const [amount, setAmount] = useState<string>('');
   const [date, setDate] = useState<string>('0000/00/00');
   const [showCalendar, setShowCalendar] = useState<boolean>(false);
 
-  const handleSave = () => {
-    console.log(`Nombre: ${nombre}, Monto: ${monto} ,Fecha: ${date}`);
-    hideForm();
+  const updateType = (value: 'Ingreso' | 'Gasto') => {
+    setMovementType(value);
   };
 
-  const updateCategory = (value: string) => {
+  const updateCategory = (
+    value: 'Factura' | 'Salario' | 'Suscripcion' | 'Otro'
+  ) => {
     setCategory(value);
   };
 
-  const updateType = (value: string) => {
-    setPeriodizateType(value);
+  const addNewMovement = () => {
+    let newMovement: PeriodizationInterface = {
+      name: name,
+      amount: Number(amount),
+      date: date,
+      operationType: type,
+      category: category,
+    };
+
+    if (newMovement.operationType === 'Ingreso') {
+      Movements.addPeriodizatedIncome(newMovement);
+    } else {
+      Movements.addPeriodizatedSpend(newMovement);
+    }
+
+    hideForm();
+    setAmount('');
+    setName('');
+    setDate('0000/00/00');
   };
 
   return (
     <>
       <Modal visible={visible} animationType="slide" transparent={true}>
         {showCalendar === true ? (
-          <View style={tw.style('my-auto px-2')}>
-            <Calendar
-              onDayPress={(day) => {
-                setDate(day.dateString);
-                setShowCalendar(false);
-              }}
-              markedDates={{
-                [date]: {
-                  selected: true,
-                  disableTouchEvent: true,
-                  selectedColor: 'purple',
-                },
-              }}
-            />
+          <View style={tw.style('h-full bg-purple-400')}>
+            <View style={tw.style('my-auto px-2')}>
+              <Calendar
+                onDayPress={(day) => {
+                  setDate(day.dateString);
+                  setShowCalendar(false);
+                }}
+                markedDates={{
+                  [date]: {
+                    selected: true,
+                    disableTouchEvent: true,
+                    selectedColor: 'purple',
+                  },
+                }}
+              />
+            </View>
           </View>
         ) : (
           <View
@@ -59,19 +86,18 @@ const PeriodizationModal = ({ visible, hideForm }: ModalForm) => {
               <Text style={tw`font-bold text-lg mb-2`}>Nombre</Text>
               <TextInput
                 style={tw`border border-gray-300 rounded-md p-2 px-10 mb-2`}
-                onChangeText={setNombre}
-                value={nombre}
+                onChangeText={setName}
+                value={name}
                 placeholder="Nombre de la operación"
               />
               <Text style={tw`font-bold text-lg mb-2`}>Monto</Text>
               <TextInput
                 style={tw`border border-gray-300 rounded-md p-2 px-10 mb-2`}
-                onChangeText={setMonto}
-                value={monto}
+                onChangeText={setAmount}
+                value={amount}
                 placeholder="$0000"
                 keyboardType="numeric"
               />
-
               <Text style={tw`font-bold text-lg mb-2`}>Fecha</Text>
               <TouchableOpacity
                 onPress={() => setShowCalendar(true)}
@@ -84,33 +110,15 @@ const PeriodizationModal = ({ visible, hideForm }: ModalForm) => {
 
               {/* Dropdowns */}
               <Text style={tw`font-bold text-lg mb-2`}>Tipo De Operación</Text>
-              <PeriodizateTypeDropdown updateType={() => updateType(type)} />
-
+              <PeriodizateTypeDropdown setNewType={updateType} />
               <Text style={tw`font-bold text-lg mb-2`}>Categoria</Text>
-              <PeriodizateCategoryDropdown
-                updateCategory={() => updateCategory(category)}
-              />
+              <PeriodizateCategoryDropdown setNewCategory={updateCategory} />
 
               {/*Buttons */}
-              <View style={tw`flex-row justify-between mt-4 `}>
-                <TouchableOpacity
-                  onPress={() => hideForm()}
-                  style={tw.style(`p-2 bg-[${colors.button_bg}]`)}
-                >
-                  <Text style={tw.style(`text-${colors.text_ligth}`)}>
-                    Cancelar
-                  </Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity
-                  onPress={handleSave}
-                  style={tw.style(`p-2 bg-[${colors.button_bg}]`)}
-                >
-                  <Text style={tw.style(`text-${colors.text_ligth}`)}>
-                    Confirmar
-                  </Text>
-                </TouchableOpacity>
-              </View>
+              <FormButtons
+                hideForm={() => hideForm()}
+                handleSave={() => addNewMovement()}
+              />
             </View>
           </View>
         )}

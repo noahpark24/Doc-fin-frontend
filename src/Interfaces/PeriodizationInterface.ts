@@ -1,7 +1,7 @@
 interface PeriodizationInterface {
   name: string;
   amount: number;
-  date: Date;
+  date: string;
   operationType: 'Ingreso' | 'Gasto';
   category: 'Factura' | 'Salario' | 'Suscripcion' | 'Otro';
 }

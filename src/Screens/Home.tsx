@@ -7,9 +7,9 @@ import colors from '../stylesheets/colors';
 import FinancesCard from '../Components/FinancesCard';
 import MovementsSection from '../Components/MovementsSection';
 import Navbar from '../Components/Navbar';
+import Money from '../store/Money';
 
 const Home = () => {
-  //Unable native back navigation of android
   useEffect(() => {
     const backHandler = BackHandler.addEventListener(
       'hardwareBackPress',
@@ -17,6 +17,8 @@ const Home = () => {
     );
     return () => backHandler.remove();
   }, []);
+
+  Money.alreadyLogged = true;
 
   return (
     <ScrollView

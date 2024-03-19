@@ -1,7 +1,9 @@
 interface IncomeInterface {
   name: string;
   amount: number;
-  date: Date;
+  date: string;
+  operationType?: 'Ingreso' | 'Gasto' | string;
+  category?: 'Factura' | 'Salario' | 'Suscripcion' | 'Otro' | string;
 }
 
 export default IncomeInterface;

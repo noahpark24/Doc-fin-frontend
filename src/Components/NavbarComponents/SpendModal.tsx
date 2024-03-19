@@ -1,27 +1,42 @@
 import { useState } from 'react';
-import { Modal, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Modal, Text, TextInput, View } from 'react-native';
 //Styles
 import colors from '../../stylesheets/colors';
 import tw from 'twrnc';
 //Components
 import SpendCategoryDropdown from './Dropdowns/SpendCategoryDropdown';
+import FormButtons from './ModalFormButtons.tsx/FormButtons';
 //Utils
 import GetActualDate from '../../Utils/GetActualDate';
 //Interfaces
 import ModalForm from '../../Interfaces/ModalForm';
+//States
+import Movements from '../../store/Movements';
+import SpendInterface from '../../Interfaces/SpendsInterface';
 
 const SpendModal = ({ visible, hideForm }: ModalForm) => {
-  const [nombre, setNombre] = useState<string>('');
-  const [category, setCategory] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [category, setCategory] = useState<
+    'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro' | string
+  >('');
   const [quantity, setQuantity] = useState<string>('');
-  const [monto, setMonto] = useState<string>('');
+  const [amount, setAmount] = useState<string>('');
   const date = GetActualDate();
 
-  const handleSave = () => {
-    console.log(
-      `Nombre: ${nombre}, Monto: ${monto} , Categoria: ${category} , Cantidad: ${quantity} , Fecha: ${date} `
-    );
+  const addNewSpend = () => {
+    let newSpend: SpendInterface = {
+      name: name,
+      amount: Number(amount),
+      quantity: Number(quantity),
+      category: category,
+      date: date,
+    };
+    Movements.addSpend(newSpend);
     hideForm();
+    setName('');
+    setCategory('');
+    setQuantity('');
+    setAmount('');
   };
 
   const updateCategory = (value: string) => {
@@ -38,15 +53,15 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
             <Text style={tw`font-bold text-lg mb-2`}>Nombre del gasto</Text>
             <TextInput
               style={tw`border border-gray-300 rounded-md p-2 px-10 mb-2`}
-              onChangeText={setNombre}
-              value={nombre}
+              onChangeText={setName}
+              value={name}
               placeholder=""
             />
             <Text style={tw`font-bold text-lg mb-2`}>Monto</Text>
             <TextInput
               style={tw`border border-gray-300 rounded-md p-2 px-10 mb-2`}
-              onChangeText={setMonto}
-              value={monto}
+              onChangeText={setAmount}
+              value={amount}
               placeholder="$000"
               keyboardType="numeric"
             />
@@ -70,25 +85,10 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
             <SpendCategoryDropdown updateCategory={updateCategory} />
 
             {/*Buttons */}
-            <View style={tw`flex-row justify-between mt-4 `}>
-              <TouchableOpacity
-                onPress={() => hideForm()}
-                style={tw.style(`p-2 bg-[${colors.button_bg}]`)}
-              >
-                <Text style={tw.style(`text-${colors.text_ligth}`)}>
-                  Cancelar
-                </Text>
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={handleSave}
-                style={tw.style(`p-2 bg-[${colors.button_bg}]`)}
-              >
-                <Text style={tw.style(`text-${colors.text_ligth}`)}>
-                  Confirmar
-                </Text>
-              </TouchableOpacity>
-            </View>
+            <FormButtons
+              hideForm={() => hideForm()}
+              handleSave={() => addNewSpend()}
+            />
           </View>
         </View>
       </Modal>
