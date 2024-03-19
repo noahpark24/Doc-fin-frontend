@@ -5,13 +5,15 @@ import tw from 'twrnc';
 import { View } from 'react-native';
 
 interface SpendCategoryDropdownProps {
-  updateType: (value: string) => void;
+  setNewType: (value: 'Ingreso' | 'Gasto') => void;
 }
 
 const PeriodizateTypeDropdown = ({
-  updateType,
+  setNewType,
 }: SpendCategoryDropdownProps) => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<'Ingreso' | 'Gasto'>(
+    'Gasto'
+  );
 
   return (
     <>
@@ -24,7 +26,7 @@ const PeriodizateTypeDropdown = ({
           )}
           onValueChange={(itemValue) => {
             setSelectedOption(itemValue);
-            updateType(itemValue);
+            setNewType(itemValue);
           }}
         >
           <Picker.Item label="Ingreso" value="Ingreso" />

@@ -1,4 +1,4 @@
-import { SafeAreaView, ScrollView, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
 //Icons

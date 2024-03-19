@@ -6,6 +6,7 @@ import IncomeMovementCard from './MovementSectionComponents/IncomeMovementCard';
 import SpendMovementCard from './MovementSectionComponents/SpendMovementCard';
 //States
 import Movements from '../store/Movements';
+import PeriodizatedIncomeCard from './MovementSectionComponents/PeriodizatedIncomeCard';
 
 const MovementsSection = () => {
   return (
@@ -14,9 +15,7 @@ const MovementsSection = () => {
         Movimientos
       </Text>
       {/*Movements Card*/}
-      {Movements.incomes.length < 1 &&
-      Movements.spends.length < 1 &&
-      Movements.periodizatedMovement.length < 1 ? (
+      {Movements.incomes.length < 1 && Movements.spends.length < 1 ? (
         <View style={tw.style('bg-[#6d00a1] w-86 mb-10 h-92 rounded-2xl ')}>
           <View
             style={tw.style('flex items-center text-center justify-center')}
@@ -32,6 +31,7 @@ const MovementsSection = () => {
           contentContainerStyle={tw`flex items-center text-center justify-center`}
         >
           <IncomeMovementCard />
+          <PeriodizatedIncomeCard />
           <SpendMovementCard />
         </ScrollView>
       )}

@@ -39,8 +39,8 @@ const Navbar = () => {
         onPress={() => setShowPeriodizateForm(true)}
         style={tw`flex flex-col items-center mr-6 text-center`}
       >
-        <AntDesign name="clockcircle" size={30} color="#6d00a1" />
-        <Text>Periodizar</Text>
+        <AntDesign name="edit" size={30} color="#6d00a1" />
+        <Text>Editar</Text>
       </TouchableOpacity>
 
       <IncomeModal
