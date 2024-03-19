@@ -5,13 +5,17 @@ import tw from 'twrnc';
 import { View } from 'react-native';
 
 interface SpendCategoryDropdownProps {
-  updateCategory: (value: string) => void;
+  updateCategory: (
+    value: 'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro'
+  ) => void;
 }
 
 const SpendCategoryDropdown = ({
   updateCategory,
 }: SpendCategoryDropdownProps) => {
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<
+    'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro'
+  >('Kiosco');
 
   return (
     <>
