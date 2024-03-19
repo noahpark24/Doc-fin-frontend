@@ -3,8 +3,9 @@ import { Text, View } from 'react-native';
 import tw from 'twrnc';
 //Stores
 import Money from '../../store/Money';
+import { observer } from 'mobx-react-lite';
 
-const SpendsSection = () => {
+const SpendsSection = observer(() => {
   return (
     <>
       <View
@@ -20,6 +21,6 @@ const SpendsSection = () => {
       </View>
     </>
   );
-};
+});
 
 export default SpendsSection;

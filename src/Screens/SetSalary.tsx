@@ -1,4 +1,5 @@
 import { Image, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
 //Styles
 import tw from 'twrnc';
 import colors from '../stylesheets/colors';
@@ -6,7 +7,8 @@ import colors from '../stylesheets/colors';
 import PrevNextButtons from '../Components/PrevNextButtons';
 import Money from '../store/Money';
 import Home from './Home';
-import { useState } from 'react';
+//Stores
+import States from '../store/States';
 
 const SetSalary = () => {
   const [salaryInput, setSalaryInput] = useState<string>('');
@@ -21,7 +23,7 @@ const SetSalary = () => {
 
   return (
     <>
-      {Money.alreadyLogged ? (
+      {States.alreadyLogged ? (
         <Home />
       ) : (
         <View

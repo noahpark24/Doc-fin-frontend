@@ -3,8 +3,9 @@ import { Text, View } from 'react-native';
 import tw from 'twrnc';
 //Stores
 import Money from '../../store/Money';
+import { observer } from 'mobx-react-lite';
 
-const IncomesSection = () => {
+const IncomesSection = observer(() => {
   return (
     <>
       <View style={tw.style(`bg-[#6d00a1] flex flex-row justify-between p-6 `)}>
@@ -17,6 +18,6 @@ const IncomesSection = () => {
       </View>
     </>
   );
-};
+});
 
 export default IncomesSection;

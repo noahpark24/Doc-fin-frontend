@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Modal, Text, TextInput, View } from 'react-native';
 //Styles
-import colors from '../../stylesheets/colors';
 import tw from 'twrnc';
 //Components
 import SpendCategoryDropdown from './Dropdowns/SpendCategoryDropdown';
@@ -49,17 +48,19 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
         <View
           style={tw`flex-1 justify-center items-center bg-black bg-opacity-50`}
         >
-          <View style={tw`bg-white p-10 rounded-lg`}>
-            <Text style={tw`font-bold text-lg mb-2`}>Nombre del gasto</Text>
+          <View style={tw`bg-white p-10 rounded-lg w-75`}>
+            <Text style={tw`font-bold text-center text-lg mb-2`}>
+              Nombre del gasto
+            </Text>
             <TextInput
-              style={tw`border border-gray-300 rounded-md p-2 px-10 mb-2`}
+              style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
               onChangeText={setName}
               value={name}
               placeholder=""
             />
-            <Text style={tw`font-bold text-lg mb-2`}>Monto</Text>
+            <Text style={tw`font-bold text-center text-lg mb-2`}>Monto</Text>
             <TextInput
-              style={tw`border border-gray-300 rounded-md p-2 px-10 mb-2`}
+              style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
               onChangeText={setAmount}
               value={amount}
               placeholder="$000"
@@ -68,9 +69,11 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
 
             {category !== 'Factura' && (
               <>
-                <Text style={tw`font-bold text-lg mb-2`}>Cantidad</Text>
+                <Text style={tw`font-bold text-center text-lg mb-2`}>
+                  Cantidad
+                </Text>
                 <TextInput
-                  style={tw`border border-gray-300 rounded-md p-2 px-10 mb-2`}
+                  style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
                   onChangeText={setQuantity}
                   value={quantity}
                   placeholder="cantidad comprada"
@@ -79,7 +82,9 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
               </>
             )}
 
-            <Text style={tw`font-bold text-lg mb-2`}>Categoria</Text>
+            <Text style={tw`font-bold text-center text-lg mb-2`}>
+              Categoria
+            </Text>
 
             {/*Dropdown*/}
             <SpendCategoryDropdown updateCategory={updateCategory} />
