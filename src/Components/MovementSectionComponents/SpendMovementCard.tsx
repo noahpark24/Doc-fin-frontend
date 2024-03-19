@@ -9,7 +9,7 @@ import Movements from '../../store/Movements';
 const SpendMovementCard = () => {
   return (
     <>
-      {/*Spend Movement Cards */}
+      {/* Spend Movement Cards */}
       {Movements.spends.map((spend, index) => (
         <View
           key={index}
@@ -17,7 +17,7 @@ const SpendMovementCard = () => {
         >
           <View
             style={tw.style(
-              'bg-red-300 rounded-md w-78 h-12 my-auto flex flex-row justify-between  '
+              'bg-red-300 rounded-md w-78 h-12 my-auto flex flex-row justify-between items-center'
             )}
           >
             <AntDesign
@@ -26,11 +26,15 @@ const SpendMovementCard = () => {
               size={30}
               color="red"
             />
-            <View>
-              <Text
-                style={tw.style(' text-base text-center ')}
-              >{`${spend.name.substring(0, 18)}`}</Text>
-              <Text style={tw.style(' text-center ')}>{`${spend.date}`}</Text>
+            <View style={tw.style('flex flex-col justify-center')}>
+              <View style={tw`flex flex-row justify-between`}>
+                <Text style={tw`text-base`}>{`${spend.name.substring(
+                  0,
+                  18
+                )}`}</Text>
+                {spend.quantity && <Text>{`x${spend.quantity}`}</Text>}
+              </View>
+              <Text style={tw`text-center`}>{`${spend.date}`}</Text>
             </View>
             <Text
               style={tw.style('text-red-800 text-lg mr-2 mt-1')}

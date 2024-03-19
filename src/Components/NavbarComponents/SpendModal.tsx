@@ -16,8 +16,8 @@ import SpendInterface from '../../Interfaces/SpendsInterface';
 const SpendModal = ({ visible, hideForm }: ModalForm) => {
   const [name, setName] = useState<string>('');
   const [category, setCategory] = useState<
-    'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro' | string
-  >('');
+    'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro'
+  >('Kiosco');
   const [quantity, setQuantity] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
   const date = GetActualDate();
@@ -33,12 +33,14 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
     Movements.addSpend(newSpend);
     hideForm();
     setName('');
-    setCategory('');
+    setCategory('Kiosco');
     setQuantity('');
     setAmount('');
   };
 
-  const updateCategory = (value: string) => {
+  const updateCategory = (
+    value: 'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro'
+  ) => {
     setCategory(value);
   };
 

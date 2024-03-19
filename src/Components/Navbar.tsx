@@ -7,7 +7,6 @@ import tw from 'twrnc';
 //Modals
 import IncomeModal from './NavbarComponents/IncomeModal';
 import SpendModal from './NavbarComponents/SpendModal';
-import States from '../store/States';
 import EditionModal from './NavbarComponents/EditionModal';
 
 const Navbar = () => {
