@@ -52,6 +52,20 @@ class MovementsStore {
 
     this.periodizatedIncomes.push(newMovement);
   }
+
+  @action
+  removeIncome(index: number) {
+    if (index >= 0 && index < this.incomes.length) {
+      this.incomes.splice(index, 1);
+    }
+  }
+
+  @action
+  removeSpend(index: number) {
+    if (index >= 0 && index < this.spends.length) {
+      this.spends.splice(index, 1);
+    }
+  }
 }
 
 export default MovementsStore.getInstance();

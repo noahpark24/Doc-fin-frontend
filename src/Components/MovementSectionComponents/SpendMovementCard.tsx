@@ -1,19 +1,33 @@
 import { Text, View } from 'react-native';
+import { useState } from 'react';
 //Styles
 import tw from 'twrnc';
 //Icons
 import { AntDesign } from '@expo/vector-icons';
 //States
 import Movements from '../../store/Movements';
+//Interfaces
+import SpendInterface from '../../Interfaces/SpendsInterface';
+import IndividualSpendModal from './Modals/IndividualSpendModal';
 
 const SpendMovementCard = () => {
+  const [showIndividualCard, setShowIndividualCard] = useState<boolean>(false);
+  const [individualSpend, setIndividualSpend] = useState<SpendInterface>();
+  const [spendIndex, setSpendIndex] = useState<number>();
+
+  const handleCardPress = (spend: SpendInterface, index: number) => {
+    setIndividualSpend(spend);
+    setShowIndividualCard(true);
+    setSpendIndex(index);
+  };
   return (
     <>
       {/* Spend Movement Cards */}
-      {Movements.spends.map((spend, index) => (
+      {Movements.spends.map((spend, index: number) => (
         <View
           key={index}
           style={tw.style('flex items-center justify-center mt-2')}
+          onTouchEnd={() => handleCardPress(spend, index)}
         >
           <View
             style={tw.style(
@@ -42,6 +56,12 @@ const SpendMovementCard = () => {
           </View>
         </View>
       ))}
+      <IndividualSpendModal
+        visible={showIndividualCard}
+        hideForm={() => setShowIndividualCard(false)}
+        spend={individualSpend}
+        index={spendIndex}
+      />
     </>
   );
 };
