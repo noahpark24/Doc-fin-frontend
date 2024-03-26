@@ -11,7 +11,7 @@ import Movements from '../../../store/Movements';
 const IndividualIncomeModal = ({
   visible,
   hideForm,
-  operation,
+  income,
   index,
 }: ModalForm) => {
   const removeIncome = () => {
@@ -36,21 +36,21 @@ const IndividualIncomeModal = ({
             <Text
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             >
-              {operation?.name}
+              {income?.name}
             </Text>
 
             <Text style={tw`font-bold text-center text-lg mb-2`}>Monto</Text>
             <Text
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             >
-              {operation?.amount}
+              {income?.amount}
             </Text>
 
             <Text style={tw`font-bold text-center text-lg mb-2`}>Fecha</Text>
             <Text
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             >
-              {operation?.date}
+              {income?.date}
             </Text>
 
             {/*Buttons*/}
