@@ -3,14 +3,14 @@ import { Modal, Text, TextInput, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
 //Utils
-import GetActualDate from '../../Utils/GetActualDate';
+import GetActualDate from '../../../Utils/GetActualDate';
 //Interfaces
-import ModalForm from '../../Interfaces/ModalForm';
-import IncomeInterface from '../../Interfaces/IncomesInterface';
+import ModalForm from '../../../Interfaces/ModalForm';
+import IncomeInterface from '../../../Interfaces/IncomesInterface';
 //States
-import Movements from '../../store/Movements';
+import Movements from '../../../store/Movements';
 //Components
-import FormButtons from './ModalFormButtons.tsx/FormButtons';
+import FormButtons from '../ModalFormButtons.tsx/FormButtons';
 
 const IncomeModal = ({ visible, hideForm }: ModalForm) => {
   const [name, setName] = useState<string>('');

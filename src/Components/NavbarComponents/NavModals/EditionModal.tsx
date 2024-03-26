@@ -3,11 +3,11 @@ import { Modal, Text, TextInput, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
 //Interfaces
-import ModalForm from '../../Interfaces/ModalForm';
+import ModalForm from '../../../Interfaces/ModalForm';
 //States
-import Money from '../../store/Money';
+import Money from '../../../store/Money';
 //Components
-import FormButtons from './ModalFormButtons.tsx/FormButtons';
+import FormButtons from '../ModalFormButtons.tsx/FormButtons';
 
 const EditionModal = ({ visible, hideForm }: ModalForm) => {
   const [availableMoney, setAvailableMoney] = useState<string>('');
