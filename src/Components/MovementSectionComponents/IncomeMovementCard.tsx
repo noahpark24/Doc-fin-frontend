@@ -57,7 +57,7 @@ const IncomeMovementCard = () => {
       <IndividualIncomeModal
         visible={showIndividualCard}
         hideForm={() => setShowIndividualCard(false)}
-        operation={individualIncome}
+        income={individualIncome}
         index={incomeIndex}
       />
     </>

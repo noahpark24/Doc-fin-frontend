@@ -3,15 +3,15 @@ import { Modal, Text, TextInput, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
 //Components
-import SpendCategoryDropdown from './Dropdowns/SpendCategoryDropdown';
-import FormButtons from './ModalFormButtons.tsx/FormButtons';
+import SpendCategoryDropdown from '../Dropdowns/SpendCategoryDropdown';
+import FormButtons from '../ModalFormButtons.tsx/FormButtons';
 //Utils
-import GetActualDate from '../../Utils/GetActualDate';
+import GetActualDate from '../../../Utils/GetActualDate';
 //Interfaces
-import ModalForm from '../../Interfaces/ModalForm';
+import ModalForm from '../../../Interfaces/ModalForm';
 //States
-import Movements from '../../store/Movements';
-import SpendInterface from '../../Interfaces/SpendsInterface';
+import Movements from '../../../store/Movements';
+import SpendInterface from '../../../Interfaces/SpendsInterface';
 
 const SpendModal = ({ visible, hideForm }: ModalForm) => {
   const [name, setName] = useState<string>('');

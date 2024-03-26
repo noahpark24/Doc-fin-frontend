@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 //Icons
-import { FontAwesome6, AntDesign } from '@expo/vector-icons';
+import { FontAwesome6, AntDesign, Entypo } from '@expo/vector-icons';
 //Styles
 import tw from 'twrnc';
 //Modals
-import IncomeModal from './NavbarComponents/IncomeModal';
-import SpendModal from './NavbarComponents/SpendModal';
-import EditionModal from './NavbarComponents/EditionModal';
+import IncomeModal from './NavbarComponents/NavModals/IncomeModal';
+import SpendModal from './NavbarComponents/NavModals/SpendModal';
+import EditionModal from './NavbarComponents/NavModals/EditionModal';
+import SaveModal from './NavbarComponents/NavModals/SaveModal';
 
 const Navbar = () => {
   const [showIncomeForm, setShowIncomeForm] = useState<boolean>(false);
   const [showSpendForm, setShowSpendForm] = useState<boolean>(false);
   const [showEditionForm, setShowEditionForm] = useState<boolean>(false);
+  const [showSaveForm, setShowSaveForm] = useState<boolean>(false);
 
   return (
     <View
       style={tw`flex-row justify-between items-center bg-gray-200 p-2 absolute bottom-0 left-0 right-0`}
     >
       <TouchableOpacity
-        style={tw`flex flex-col ml-6 items-center text-center`}
+        style={tw`flex flex-col ml-4 items-center text-center`}
         onPress={() => setShowIncomeForm(true)}
       >
         <FontAwesome6 name="circle-arrow-up" size={30} color="#6d00a1" />
@@ -35,10 +37,18 @@ const Navbar = () => {
       </TouchableOpacity>
 
       <TouchableOpacity
+        onPress={() => setShowSaveForm(true)}
+        style={tw`flex flex-col items-center text-center`}
+      >
+        <Entypo name="save" size={30} color="#6d00a1" />
+        <Text>Guardar</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
         onPress={() => {
           setShowEditionForm(true);
         }}
-        style={tw`flex flex-col items-center mr-6 text-center`}
+        style={tw`flex flex-col items-center mr-4 text-center`}
       >
         <AntDesign name="edit" size={30} color="#6d00a1" />
         <Text>Editar</Text>
@@ -56,6 +66,11 @@ const Navbar = () => {
       <EditionModal
         visible={showEditionForm}
         hideForm={() => setShowEditionForm(false)}
+      />
+
+      <SaveModal
+        visible={showSaveForm}
+        hideForm={() => setShowSaveForm(false)}
       />
     </View>
   );

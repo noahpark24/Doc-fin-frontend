@@ -1,4 +1,5 @@
 import IncomeInterface from './IncomesInterface';
+import monthlyRegisterInterface from './MonthlyRegisterInterface';
 import SpendInterface from './SpendsInterface';
 
 interface ModalForm {
@@ -6,6 +7,7 @@ interface ModalForm {
   hideForm: () => void;
   income?: IncomeInterface;
   spend?: SpendInterface;
+  registry?: monthlyRegisterInterface;
   index?: number;
 }
 
