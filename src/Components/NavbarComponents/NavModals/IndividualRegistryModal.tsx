@@ -36,7 +36,7 @@ const IndividualRegistryModal = ({
             <Text
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             >
-              {`${registry?.day}/${registry?.month}/${registry?.year}`}
+              {`${registry?.day} de ${registry?.month} de ${registry?.year}`}
             </Text>
 
             <Text style={tw`font-bold text-center text-lg mb-2`}>
