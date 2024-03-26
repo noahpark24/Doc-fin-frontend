@@ -8,6 +8,7 @@ import { AntDesign } from '@expo/vector-icons';
 import MonthlyRegister from '../../store/MonthlyRegister';
 import monthlyRegisterInterface from '../../Interfaces/MonthlyRegisterInterface';
 import IndividualRegistryModal from './NavModals/IndividualRegistryModal';
+import RenderMoneyInfo from './RenderMoneyInfo';
 
 const MonthlyRegisterCard = () => {
   const [showIndividualCard, setShowIndividualCard] = useState<boolean>(false);
@@ -37,49 +38,7 @@ const MonthlyRegisterCard = () => {
                 'bg-gray-300 rounded-md w-78 h-12 my-auto flex flex-row justify-between  '
               )}
             >
-              {registry.leftOverMoney > 0 ? (
-                <>
-                  <AntDesign
-                    style={tw.style('ml-2 mt-2')}
-                    name="pluscircle"
-                    size={30}
-                    color="green"
-                  />
-
-                  <View>
-                    <Text style={tw.style('text-base text-center')}>
-                      {`${registry.day} de`}
-                    </Text>
-                    <Text
-                      style={tw.style('text-center ')}
-                    >{`${registry.month} de ${registry.year}`}</Text>
-                  </View>
-
-                  <Text
-                    style={tw.style('text-green-800 text-lg mr-2 mt-1')}
-                  >{`+ ${registry.leftOverMoney}`}</Text>
-                </>
-              ) : (
-                <>
-                  <AntDesign
-                    style={tw.style('ml-2 mt-2')}
-                    name="minuscircle"
-                    size={30}
-                    color="red"
-                  />
-                  <View>
-                    <Text style={tw.style('text-base text-center')}>
-                      {`${registry.day} de `}
-                    </Text>
-                    <Text
-                      style={tw.style('text-center ')}
-                    >{`${registry.month} de ${registry.year}`}</Text>
-                  </View>
-                  <Text
-                    style={tw.style('text-red-800 text-lg mr-2 mt-1')}
-                  >{` ${registry.leftOverMoney}`}</Text>
-                </>
-              )}
+              {RenderMoneyInfo(registry)}
             </View>
           </View>
         </View>
