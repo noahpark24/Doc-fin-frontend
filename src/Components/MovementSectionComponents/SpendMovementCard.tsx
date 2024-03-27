@@ -49,7 +49,7 @@ const SpendMovementCard = () => {
                   0,
                   18
                 )}`}</Text>
-                {spend.quantity && <Text>{`x${spend.quantity}`}</Text>}
+                {spend.quantity && <Text>{`   x${spend.quantity}`}</Text>}
               </View>
               <Text style={tw`text-center`}>{`${spend.date}`}</Text>
             </View>
