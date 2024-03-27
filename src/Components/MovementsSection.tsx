@@ -1,4 +1,5 @@
 import { ScrollView, Text, View } from 'react-native';
+import { observer } from 'mobx-react-lite';
 //Styles
 import tw from 'twrnc';
 //Components
@@ -7,7 +8,7 @@ import SpendMovementCard from './MovementSectionComponents/SpendMovementCard';
 //States
 import Movements from '../store/Movements';
 
-const MovementsSection = () => {
+const MovementsSection = observer(() => {
   return (
     <>
       <Text style={tw.style(' text-white text-2xl text-center ')}>
@@ -35,6 +36,6 @@ const MovementsSection = () => {
       )}
     </>
   );
-};
+});
 
 export default MovementsSection;
