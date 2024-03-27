@@ -8,7 +8,10 @@ import { AntDesign } from '@expo/vector-icons';
 import Movements from '../../store/Movements';
 //Interfaces
 import IncomeInterface from '../../Interfaces/IncomesInterface';
+//Modals
 import IndividualIncomeModal from './Modals/IndividualIncomeModal';
+import FormatMoneyValue from '../../Utils/FormatMoneyValue';
+//Utils
 
 const IncomeMovementCard = () => {
   const [showIndividualCard, setShowIndividualCard] = useState<boolean>(false);
@@ -49,7 +52,7 @@ const IncomeMovementCard = () => {
               </View>
               <Text
                 style={tw.style('text-green-800 text-lg mr-2 mt-1')}
-              >{`+ ${income.amount}`}</Text>
+              >{`+ ${FormatMoneyValue(`${income.amount}`)}`}</Text>
             </View>
           </View>
         </View>

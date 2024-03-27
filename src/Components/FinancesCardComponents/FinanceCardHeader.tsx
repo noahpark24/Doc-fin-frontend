@@ -1,11 +1,15 @@
 import { Text, View } from 'react-native';
+import { observer } from 'mobx-react-lite';
 //Styles
 import tw from 'twrnc';
 //Stores
 import Money from '../../store/Money';
-import { observer } from 'mobx-react-lite';
+//Utils
+import FormatSalaryValue from '../../Utils/FormatMoneyValue';
 
 const FinanceCardHeader = observer(() => {
+  const formattedAvailableMoney = FormatSalaryValue(`${Money.availableMoney}`);
+
   return (
     <>
       <View style={tw.style('bg-[#3C0753] w-86  pb-4 rounded-t-xl  ')}>
@@ -15,7 +19,7 @@ const FinanceCardHeader = observer(() => {
 
         <Text
           style={tw.style('text-white text-xl text-center')}
-        >{`$${Money.availableMoney}`}</Text>
+        >{`$ ${formattedAvailableMoney}`}</Text>
       </View>
     </>
   );

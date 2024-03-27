@@ -20,7 +20,7 @@ const SpendCategoryDropdown = ({
   return (
     <>
       <View
-        style={tw.style('flex  flex-row justify-center items-center mb-16')}
+        style={tw.style('flex  flex-row justify-center items-center mb-10')}
       >
         {/* Dropdown */}
         <Picker

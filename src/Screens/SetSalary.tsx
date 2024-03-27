@@ -9,13 +9,17 @@ import Money from '../store/Money';
 import Home from './Home';
 //Stores
 import States from '../store/States';
+//Utils
+import FormatSalaryValue from '../Utils/FormatMoneyValue';
 
 const SetSalary = () => {
   const [salaryInput, setSalaryInput] = useState<string>('');
 
   const handleSalaryInputChange = (text: string) => {
-    setSalaryInput(text);
-    const salaryValue = parseFloat(text);
+    const formattedValue = FormatSalaryValue(text);
+    setSalaryInput(formattedValue);
+
+    const salaryValue = Number(formattedValue.replace(/\./g, ''));
     if (!isNaN(salaryValue)) {
       Money.updateAvailableMoney(salaryValue);
     }
@@ -51,6 +55,7 @@ const SetSalary = () => {
             placeholderTextColor="white"
             value={salaryInput}
             onChangeText={handleSalaryInputChange}
+            maxLength={10}
           />
           <PrevNextButtons prev={'Welcome'} next={'Home'} />
         </View>

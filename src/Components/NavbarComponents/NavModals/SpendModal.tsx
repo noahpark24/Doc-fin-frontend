@@ -9,9 +9,12 @@ import FormButtons from '../ModalFormButtons.tsx/FormButtons';
 import GetActualDate from '../../../Utils/GetActualDate';
 //Interfaces
 import ModalForm from '../../../Interfaces/ModalForm';
+import SpendInterface from '../../../Interfaces/SpendsInterface';
 //States
 import Movements from '../../../store/Movements';
-import SpendInterface from '../../../Interfaces/SpendsInterface';
+//Utils
+import FormatMoneyValue from '../../../Utils/FormatMoneyValue';
+import NameValidation from '../../../Utils/NameValidation';
 
 const SpendModal = ({ visible, hideForm }: ModalForm) => {
   const [name, setName] = useState<string>('');
@@ -20,6 +23,7 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
   >('Kiosco');
   const [quantity, setQuantity] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
+  const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const date = GetActualDate();
 
   const addNewSpend = () => {
@@ -30,12 +34,17 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
       category: category,
       date: date,
     };
-    Movements.addSpend(newSpend);
-    hideForm();
-    setName('');
-    setCategory('Kiosco');
-    setQuantity('');
-    setAmount('');
+    if (NameValidation(newSpend.name)) {
+      Movements.addSpend(newSpend);
+      hideForm();
+      setName('');
+      setCategory('Kiosco');
+      setQuantity('');
+      setAmount('');
+      setShowErrorMessage(false);
+    } else {
+      setShowErrorMessage(true);
+    }
   };
 
   const updateCategory = (
@@ -56,17 +65,21 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
             </Text>
             <TextInput
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
-              onChangeText={setName}
+              onChangeText={(text) => {
+                if (text !== null) setName(text);
+              }}
               value={name}
               placeholder=""
+              maxLength={16}
             />
             <Text style={tw`font-bold text-center text-lg mb-2`}>Monto</Text>
             <TextInput
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
               onChangeText={setAmount}
-              value={amount}
+              value={FormatMoneyValue(amount)}
               placeholder="$000"
               keyboardType="numeric"
+              maxLength={10}
             />
 
             {category !== 'Factura' && (
@@ -90,6 +103,12 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
 
             {/*Dropdown*/}
             <SpendCategoryDropdown updateCategory={updateCategory} />
+
+            {showErrorMessage && (
+              <Text style={tw`text-red-500 text-xl text-center mb-2`}>
+                Debe Ingresar Un Nombre
+              </Text>
+            )}
 
             {/*Buttons */}
             <FormButtons

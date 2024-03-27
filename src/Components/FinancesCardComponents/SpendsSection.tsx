@@ -1,11 +1,15 @@
 import { Text, View } from 'react-native';
+import { observer } from 'mobx-react-lite';
 //Styles
 import tw from 'twrnc';
 //Stores
 import Money from '../../store/Money';
-import { observer } from 'mobx-react-lite';
+//Utils
+import FormatMoneyValue from '../../Utils/FormatMoneyValue';
 
 const SpendsSection = observer(() => {
+  const formattedTotalSpends = FormatMoneyValue(`${Money.totalSpends}`);
+
   return (
     <>
       <View
@@ -17,7 +21,7 @@ const SpendsSection = observer(() => {
         <Text style={tw.style('text-white text-xl')}>Gastos</Text>
         <Text
           style={tw.style('text-red-300 bg-red-600 rounded-md mr-8 text-lg')}
-        >{` ${Money.totalSpends}`}</Text>
+        >{` ${formattedTotalSpends}`}</Text>
       </View>
     </>
   );
