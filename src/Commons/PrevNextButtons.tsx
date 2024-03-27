@@ -11,7 +11,7 @@ interface PrevNextButtonsProps {
 }
 
 const PrevNextButtons = ({ prev, next }: PrevNextButtonsProps) => {
-  const handleNavigate = useHandleNavigation();
+  const handleNavigate: any = useHandleNavigation();
 
   return (
     <>

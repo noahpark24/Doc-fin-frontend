@@ -1,9 +1,14 @@
 import { Text, View } from 'react-native';
+import { observer } from 'mobx-react-lite';
 //Styles
 import tw from 'twrnc';
+//Stores
+import Money from '../../store/Money';
+//Utils
+import FormatSalaryValue from '../../Utils/FormatMoneyValue';
 
-const FinanceCardHeader = () => {
-  let availableMoney = 175000;
+const FinanceCardHeader = observer(() => {
+  const formattedAvailableMoney = FormatSalaryValue(`${Money.availableMoney}`);
 
   return (
     <>
@@ -11,12 +16,13 @@ const FinanceCardHeader = () => {
         <Text style={tw.style('text-lg text-white text-center mt-2')}>
           Dinero Disponible
         </Text>
+
         <Text
           style={tw.style('text-white text-xl text-center')}
-        >{`$${availableMoney}`}</Text>
+        >{`$ ${formattedAvailableMoney}`}</Text>
       </View>
     </>
   );
-};
+});
 
 export default FinanceCardHeader;

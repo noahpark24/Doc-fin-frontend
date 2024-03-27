@@ -1,9 +1,14 @@
 import { Text, View } from 'react-native';
+import { observer } from 'mobx-react-lite';
 //Styles
 import tw from 'twrnc';
+//Stores
+import Money from '../../store/Money';
+//Utils
+import FormatMoneyValue from '../../Utils/FormatMoneyValue';
 
-const IncomesSection = () => {
-  let incomes = 0;
+const IncomesSection = observer(() => {
+  const formattedTotalIncomes = FormatMoneyValue(`${Money.totalIncomes}`);
 
   return (
     <>
@@ -13,10 +18,10 @@ const IncomesSection = () => {
           style={tw.style(
             'text-green-600 rounded-md bg-green-300 mr-8 text-lg'
           )}
-        >{`+ ${incomes}`}</Text>
+        >{`+ ${formattedTotalIncomes}`}</Text>
       </View>
     </>
   );
-};
+});
 
 export default IncomesSection;
