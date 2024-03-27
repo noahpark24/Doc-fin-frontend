@@ -43,6 +43,8 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
       setCategory('Kiosco');
       setQuantity('');
       setAmountInput('');
+      setFormatedAmount('');
+      setShowQuantityField(true);
       setShowErrorMessage(false);
     } else {
       setShowErrorMessage(true);
