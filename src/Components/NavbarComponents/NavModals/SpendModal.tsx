@@ -22,14 +22,15 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
     'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro'
   >('Kiosco');
   const [quantity, setQuantity] = useState<string>('');
-  const [amount, setAmount] = useState<string>('');
+  const [amountInput, setAmountInput] = useState<string>('');
+  const [formatedAmount, setFormatedAmount] = useState<string>('');
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const date = GetActualDate();
 
   const addNewSpend = () => {
     let newSpend: SpendInterface = {
       name: name,
-      amount: Number(amount),
+      amount: Number(amountInput.replace('.', '')),
       quantity: Number(quantity),
       category: category,
       date: date,
@@ -40,7 +41,7 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
       setName('');
       setCategory('Kiosco');
       setQuantity('');
-      setAmount('');
+      setAmountInput('');
       setShowErrorMessage(false);
     } else {
       setShowErrorMessage(true);
@@ -51,6 +52,11 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
     value: 'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro'
   ) => {
     setCategory(value);
+  };
+
+  const handleAmountChange = (text: string) => {
+    setAmountInput(text);
+    setFormatedAmount(FormatMoneyValue(text));
   };
 
   return (
@@ -65,9 +71,7 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
             </Text>
             <TextInput
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
-              onChangeText={(text) => {
-                if (text !== null) setName(text);
-              }}
+              onChangeText={(text) => setName(text)}
               value={name}
               placeholder=""
               maxLength={16}
@@ -75,8 +79,8 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
             <Text style={tw`font-bold text-center text-lg mb-2`}>Monto</Text>
             <TextInput
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
-              onChangeText={setAmount}
-              value={FormatMoneyValue(amount)}
+              onChangeText={handleAmountChange}
+              value={formatedAmount}
               placeholder="$000"
               keyboardType="numeric"
               maxLength={10}

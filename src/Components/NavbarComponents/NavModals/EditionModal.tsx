@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Modal, Text, TextInput, View } from 'react-native';
+import { observer } from 'mobx-react-lite'; // Importa el observer
 //Styles
 import tw from 'twrnc';
 //Interfaces
@@ -11,15 +12,21 @@ import FormButtons from '../ModalFormButtons.tsx/FormButtons';
 //Utils
 import FormatMoneyValue from '../../../Utils/FormatMoneyValue';
 
-const EditionModal = ({ visible, hideForm }: ModalForm) => {
-  const [availableMoney, setAvailableMoney] = useState<string>('');
-  const [totalIncomes, setTotalIncomes] = useState<string>('');
-  const [totalSpends, setTotalSpends] = useState<string>('');
+const EditionModal = observer(({ visible, hideForm }: ModalForm) => {
+  const [availableMoney, setAvailableMoney] = useState<string>(
+    FormatMoneyValue(Money.availableMoney.toString())
+  );
+  const [totalIncomes, setTotalIncomes] = useState<string>(
+    FormatMoneyValue(Money.totalIncomes.toString())
+  );
+  const [totalSpends, setTotalSpends] = useState<string>(
+    FormatMoneyValue(Money.totalSpends.toString())
+  );
 
   const updateFinancesValues = () => {
-    Money.updateAvailableMoney(Number(availableMoney));
-    Money.updateTotalIncomes(Number(totalIncomes));
-    Money.updateTotalSpends(Number(totalSpends));
+    Money.updateAvailableMoney(Number(availableMoney.replace(',', '')));
+    Money.updateTotalIncomes(Number(totalIncomes.replace(',', '')));
+    Money.updateTotalSpends(Number(totalSpends.replace(',', '')));
     hideForm();
   };
 
@@ -35,8 +42,7 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
           <TextInput
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setAvailableMoney}
-            value={FormatMoneyValue(availableMoney)}
-            placeholder={`$ ${Money.availableMoney}`}
+            value={availableMoney}
             keyboardType="numeric"
             maxLength={10}
           />
@@ -47,8 +53,7 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
           <TextInput
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setTotalIncomes}
-            value={FormatMoneyValue(totalIncomes)}
-            placeholder={`$ ${Money.totalIncomes}`}
+            value={totalIncomes}
             keyboardType="numeric"
             maxLength={10}
           />
@@ -59,8 +64,7 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
           <TextInput
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setTotalSpends}
-            value={FormatMoneyValue(totalSpends)}
-            placeholder={`$ ${Money.totalSpends}`}
+            value={totalSpends}
             keyboardType="numeric"
             maxLength={10}
           />
@@ -74,6 +78,6 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
       </View>
     </Modal>
   );
-};
+});
 
 export default EditionModal;
