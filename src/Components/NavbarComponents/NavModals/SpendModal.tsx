@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Modal, Text, TextInput, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
@@ -25,13 +25,14 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
   const [amountInput, setAmountInput] = useState<string>('');
   const [formatedAmount, setFormatedAmount] = useState<string>('');
   const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
+  const [showQuantityField, setShowQuantityField] = useState<boolean>(true);
   const date = GetActualDate();
 
   const addNewSpend = () => {
     let newSpend: SpendInterface = {
       name: name,
       amount: Number(amountInput.replace('.', '')),
-      quantity: Number(quantity),
+      quantity: showQuantityField ? Number(quantity) : undefined,
       category: category,
       date: date,
     };
@@ -52,6 +53,7 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
     value: 'Factura' | 'Mercado' | 'Kiosco' | 'Compra' | 'Otro'
   ) => {
     setCategory(value);
+    setShowQuantityField(value !== 'Factura');
   };
 
   const handleAmountChange = (text: string) => {
@@ -74,7 +76,7 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
               onChangeText={(text) => setName(text)}
               value={name}
               placeholder=""
-              maxLength={16}
+              maxLength={20}
             />
             <Text style={tw`font-bold text-center text-lg mb-2`}>Monto</Text>
             <TextInput
@@ -86,7 +88,7 @@ const SpendModal = ({ visible, hideForm }: ModalForm) => {
               maxLength={10}
             />
 
-            {category !== 'Factura' && (
+            {showQuantityField && (
               <>
                 <Text style={tw`font-bold text-center text-lg mb-2`}>
                   Cantidad

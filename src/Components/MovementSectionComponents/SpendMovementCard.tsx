@@ -12,8 +12,9 @@ import SpendInterface from '../../Interfaces/SpendsInterface';
 import IndividualSpendModal from './Modals/IndividualSpendModal';
 //Utils
 import FormatMoneyValue from '../../Utils/FormatMoneyValue';
+import { observer } from 'mobx-react-lite';
 
-const SpendMovementCard = () => {
+const SpendMovementCard = observer(() => {
   const [showIndividualCard, setShowIndividualCard] = useState<boolean>(false);
   const [individualSpend, setIndividualSpend] = useState<SpendInterface>();
   const [spendIndex, setSpendIndex] = useState<number>();
@@ -55,7 +56,7 @@ const SpendMovementCard = () => {
             </View>
             <Text
               style={tw.style('text-red-800 text-lg mr-2 mt-1')}
-            >{`- ${FormatMoneyValue(`${spend.amount}`)}`}</Text>
+            >{`- ${FormatMoneyValue(`${spend.amount}`).toString()}`}</Text>
           </View>
         </View>
       ))}
@@ -67,6 +68,6 @@ const SpendMovementCard = () => {
       />
     </>
   );
-};
+});
 
 export default SpendMovementCard;

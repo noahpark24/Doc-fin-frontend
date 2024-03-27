@@ -21,7 +21,7 @@ const SpendsSection = observer(() => {
         <Text style={tw.style('text-white text-xl')}>Gastos</Text>
         <Text
           style={tw.style('text-red-300 bg-red-600 rounded-md mr-8 text-lg')}
-        >{` ${formattedTotalSpends}`}</Text>
+        >{`- ${formattedTotalSpends}`}</Text>
       </View>
     </>
   );
