@@ -6,6 +6,7 @@ import tw from 'twrnc';
 import { AntDesign } from '@expo/vector-icons';
 //Interfaces
 import monthlyRegisterInterface from '../../Interfaces/MonthlyRegisterInterface';
+import FormatMoneyValue from '../../Utils/FormatMoneyValue';
 
 const RenderMoneyInfo = (registry: monthlyRegisterInterface) => {
   const moneyIcon =
@@ -28,11 +29,11 @@ const RenderMoneyInfo = (registry: monthlyRegisterInterface) => {
   const moneyText =
     registry.leftOverMoney > 0 ? (
       <Text style={tw.style('text-green-800 text-lg mr-2 mt-1')}>
-        {`+ ${registry.leftOverMoney}`}
+        {`+ ${FormatMoneyValue(`${registry.leftOverMoney}`)}`}
       </Text>
     ) : (
       <Text style={tw.style('text-red-800 text-lg mr-2 mt-1')}>
-        {` ${registry.leftOverMoney}`}
+        {` ${FormatMoneyValue(`${registry.leftOverMoney}`)}`}
       </Text>
     );
 

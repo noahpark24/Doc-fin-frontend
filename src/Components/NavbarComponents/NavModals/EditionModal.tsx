@@ -8,6 +8,8 @@ import ModalForm from '../../../Interfaces/ModalForm';
 import Money from '../../../store/Money';
 //Components
 import FormButtons from '../ModalFormButtons.tsx/FormButtons';
+//Utils
+import FormatMoneyValue from '../../../Utils/FormatMoneyValue';
 
 const EditionModal = ({ visible, hideForm }: ModalForm) => {
   const [availableMoney, setAvailableMoney] = useState<string>('');
@@ -33,9 +35,10 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
           <TextInput
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setAvailableMoney}
-            value={availableMoney}
+            value={FormatMoneyValue(availableMoney)}
             placeholder="$0000"
             keyboardType="numeric"
+            maxLength={10}
           />
 
           <Text style={tw`font-bold text-center text-lg mb-2`}>
@@ -44,9 +47,10 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
           <TextInput
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setTotalIncomes}
-            value={totalIncomes}
+            value={FormatMoneyValue(totalIncomes)}
             placeholder="$0000"
             keyboardType="numeric"
+            maxLength={10}
           />
 
           <Text style={tw`font-bold text-center text-lg mb-2`}>
@@ -55,9 +59,10 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
           <TextInput
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setTotalSpends}
-            value={totalSpends}
+            value={FormatMoneyValue(totalSpends)}
             placeholder="$0000"
             keyboardType="numeric"
+            maxLength={10}
           />
 
           {/*Buttons*/}

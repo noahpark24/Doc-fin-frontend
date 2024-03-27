@@ -7,6 +7,8 @@ import ModalForm from '../../../Interfaces/ModalForm';
 import MonthlyRegister from '../../../store/MonthlyRegister';
 //Componentes
 import MovementFormButtons from '../../MovementSectionComponents/Modals/Buttons/MovementFormButtons';
+//Utils
+import FormatMoneyValue from '../../../Utils/FormatMoneyValue';
 
 const IndividualRegistryModal = ({
   visible,
@@ -45,7 +47,7 @@ const IndividualRegistryModal = ({
             <Text
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             >
-              {registry?.leftOverMoney}
+              {FormatMoneyValue(`${registry?.leftOverMoney}`)}
             </Text>
 
             <Text style={tw`font-bold text-center text-lg mb-2`}>
@@ -54,7 +56,7 @@ const IndividualRegistryModal = ({
             <Text
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             >
-              {registry?.totalIncomes}
+              {FormatMoneyValue(`${registry?.totalIncomes}`)}
             </Text>
 
             <Text style={tw`font-bold text-center text-lg mb-2`}>
@@ -63,7 +65,7 @@ const IndividualRegistryModal = ({
             <Text
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             >
-              {registry?.totalSpends}
+              {FormatMoneyValue(`${registry?.totalSpends}`)}
             </Text>
 
             {/*Buttons*/}

@@ -8,7 +8,10 @@ import { AntDesign } from '@expo/vector-icons';
 import Movements from '../../store/Movements';
 //Interfaces
 import SpendInterface from '../../Interfaces/SpendsInterface';
+//Modals
 import IndividualSpendModal from './Modals/IndividualSpendModal';
+//Utils
+import FormatMoneyValue from '../../Utils/FormatMoneyValue';
 
 const SpendMovementCard = () => {
   const [showIndividualCard, setShowIndividualCard] = useState<boolean>(false);
@@ -52,7 +55,7 @@ const SpendMovementCard = () => {
             </View>
             <Text
               style={tw.style('text-red-800 text-lg mr-2 mt-1')}
-            >{`- ${spend.amount}`}</Text>
+            >{`- ${FormatMoneyValue(`${spend.amount}`)}`}</Text>
           </View>
         </View>
       ))}

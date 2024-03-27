@@ -11,10 +11,14 @@ import IncomeInterface from '../../../Interfaces/IncomesInterface';
 import Movements from '../../../store/Movements';
 //Components
 import FormButtons from '../ModalFormButtons.tsx/FormButtons';
+//Utils
+import FormatMoneyValue from '../../../Utils/FormatMoneyValue';
+import NameValidation from '../../../Utils/NameValidation';
 
 const IncomeModal = ({ visible, hideForm }: ModalForm) => {
   const [name, setName] = useState<string>('');
   const [amount, setAmount] = useState<string>('');
+  const [showErrorMessage, setShowErrorMessage] = useState<boolean>(false);
   const date = GetActualDate();
 
   const addNewIncome = () => {
@@ -23,10 +27,15 @@ const IncomeModal = ({ visible, hideForm }: ModalForm) => {
       amount: Number(amount),
       date: date,
     };
-    Movements.addIncome(newIncome);
-    hideForm();
-    setName('');
-    setAmount('');
+    if (NameValidation(newIncome.name)) {
+      Movements.addIncome(newIncome);
+      hideForm();
+      setName('');
+      setAmount('');
+      setShowErrorMessage(false);
+    } else {
+      setShowErrorMessage(true);
+    }
   };
 
   return (
@@ -43,19 +52,29 @@ const IncomeModal = ({ visible, hideForm }: ModalForm) => {
             </Text>
             <TextInput
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
-              onChangeText={setName}
+              onChangeText={(text) => {
+                if (text !== null) setName(text);
+              }}
               value={name}
               placeholder=""
+              maxLength={16}
             />
 
             <Text style={tw`font-bold text-center text-lg mb-2`}>Monto</Text>
             <TextInput
               style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
               onChangeText={setAmount}
-              value={amount}
+              value={FormatMoneyValue(amount)}
               placeholder="$0000"
               keyboardType="numeric"
+              maxLength={10}
             />
+
+            {showErrorMessage && (
+              <Text style={tw`text-red-500 text-xl text-center mb-2`}>
+                Debe Ingresar Un Nombre
+              </Text>
+            )}
 
             {/*Buttons*/}
             <FormButtons
