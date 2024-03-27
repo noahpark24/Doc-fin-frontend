@@ -36,7 +36,7 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setAvailableMoney}
             value={FormatMoneyValue(availableMoney)}
-            placeholder="$0000"
+            placeholder={`$ ${Money.availableMoney}`}
             keyboardType="numeric"
             maxLength={10}
           />
@@ -48,7 +48,7 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setTotalIncomes}
             value={FormatMoneyValue(totalIncomes)}
-            placeholder="$0000"
+            placeholder={`$ ${Money.totalIncomes}`}
             keyboardType="numeric"
             maxLength={10}
           />
@@ -60,7 +60,7 @@ const EditionModal = ({ visible, hideForm }: ModalForm) => {
             style={tw`border border-gray-300 text-center rounded-md p-2 px-10 mb-2`}
             onChangeText={setTotalSpends}
             value={FormatMoneyValue(totalSpends)}
-            placeholder="$0000"
+            placeholder={`$ ${Money.totalSpends}`}
             keyboardType="numeric"
             maxLength={10}
           />

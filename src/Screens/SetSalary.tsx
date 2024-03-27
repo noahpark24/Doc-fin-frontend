@@ -4,7 +4,7 @@ import { useState } from 'react';
 import tw from 'twrnc';
 import colors from '../stylesheets/colors';
 //Components
-import PrevNextButtons from '../Components/PrevNextButtons';
+import PrevNextButtons from '../Commons/PrevNextButtons';
 import Money from '../store/Money';
 import Home from './Home';
 //Stores

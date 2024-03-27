@@ -1,11 +1,5 @@
 import { useState } from 'react';
-import {
-  Modal,
-  Text,
-  TouchableOpacity,
-  TouchableWithoutFeedback,
-  View,
-} from 'react-native';
+import { Modal, Text, TouchableOpacity, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
 import colors from '../../../stylesheets/colors';
@@ -16,8 +10,8 @@ import monthlyRegisterInterface from '../../../Interfaces/MonthlyRegisterInterfa
 import Money from '../../../store/Money';
 import MonthlyRegister from '../../../store/MonthlyRegister';
 //Utils
-import { getMonthName } from '../../../Utils/GetActualMonth';
-import { getCurrentYear } from '../../../Utils/GetActualYear';
+import { getMonthName } from '../../../Utils/DateUtils/GetActualMonth';
+import { getCurrentYear } from '../../../Utils/DateUtils/GetActualYear';
 //Components
 import FinancesRegistry from '../../FinancesRegistry';
 

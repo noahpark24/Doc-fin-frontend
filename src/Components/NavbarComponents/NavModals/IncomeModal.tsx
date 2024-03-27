@@ -3,7 +3,7 @@ import { Modal, Text, TextInput, View } from 'react-native';
 //Styles
 import tw from 'twrnc';
 //Utils
-import GetActualDate from '../../../Utils/GetActualDate';
+import GetActualDate from '../../../Utils/DateUtils/GetActualDate';
 //Interfaces
 import ModalForm from '../../../Interfaces/ModalForm';
 import IncomeInterface from '../../../Interfaces/IncomesInterface';

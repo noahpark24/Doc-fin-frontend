@@ -6,7 +6,7 @@ import tw from 'twrnc';
 import SpendCategoryDropdown from '../Dropdowns/SpendCategoryDropdown';
 import FormButtons from '../ModalFormButtons.tsx/FormButtons';
 //Utils
-import GetActualDate from '../../../Utils/GetActualDate';
+import GetActualDate from '../../../Utils/DateUtils/GetActualDate';
 //Interfaces
 import ModalForm from '../../../Interfaces/ModalForm';
 import SpendInterface from '../../../Interfaces/SpendsInterface';
